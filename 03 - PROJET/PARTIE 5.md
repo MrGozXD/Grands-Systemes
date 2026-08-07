@@ -35,16 +35,18 @@ Résultats :
 
 G1P5EMP
 ![[Pasted image 20260806113805.png]]
-![[Pasted image 20260806113835.png]]
+![[Pasted image 20260807095751.png]]
 ![[Pasted image 20260806113851.png]]
 
 Création du KSDS
-![[Pasted image 20260806111834.png]]
-Remarque : la taille d'enregistrement est de 100 octets (et max 100) parce que ça a été repris d'un autre JCL qui faisait aussi une alimentation de KSDS à partir de EMPLOYE.DATA mais l'enregistrement d'un employé fait moins que cette taille choisie par sécurité.
+
+Remarque : 
+- La clef d'enregistrement KEY(5 0) correspond au CODE-EMP (5 premiers octets de l'enregistrement)
+- la taille d'enregistrement est de 100 octets (et max 100) parce que ça a été repris d'un autre JCL qui faisait aussi une alimentation de KSDS à partir de EMPLOYE.DATA mais l'enregistrement d'un employé fait moins que cette taille choisie par sécurité.
 
 Alimentation du KSDS
-![[Pasted image 20260806112002.png]]
-![[Pasted image 20260806112022.png]]
+![[Pasted image 20260807100208.png]]
+![[Pasted image 20260807100243.png]]
 
 ### Etape 2
 
