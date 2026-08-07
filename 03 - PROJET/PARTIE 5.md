@@ -56,21 +56,24 @@ La table PARTS est composée ainsi :
 
 | Champ  | Type        | Taille estimée<br>(octets) |
 | ------ | ----------- | -------------------------- |
-| PNQ    | CHAR(2)     | 2                          |
+| PNO    | CHAR(2)     | 2                          |
 | PNAME  | VARCHAR(30) | 30 (max)                   |
 | COLOR  | VARCHAR(30) | 30 (max)                   |
 | WEIGHT | DEC(2)      | 2                          |
 | CITY   | VARCHAR(20) | 20 (max)                   |
 En prenant en compte les tailles estimées aux valeurs max et le fait qu'en VSAM il y a des indicateurs de longueur pour les champs VARCHAR, on peut estimer la taille max d'un enregistrement dans le KSDS de 2+30+1+30+1+2+20+1 = 87 octets. Par sécurité, on prendra une taille d'enregistrement de 100 octets.
+PNO sert de clef pour les enregistrements.
 
 Résultats :
 
 G1P5NPAR
-![[Pasted image 20260806115141.png]]![[Pasted image 20260806115208.png]]
+
+![[Pasted image 20260806115141.png]]
+![[Pasted image 20260807115946.png]]
 
 Création du KSDS
-![[Pasted image 20260806115305.png]]
 
+![[Pasted image 20260807120034.png]]
 ### Etape 3
 
 Création du mapset MS1G1P5 de l'écran d'authentification
