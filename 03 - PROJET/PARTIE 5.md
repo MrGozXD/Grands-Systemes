@@ -20,6 +20,7 @@ Faire une IHM avec authentification de l'utilisateur permettant d'ajouter de nou
 ## Choix faits
 
 L'ajout d'une nouvelle pièce dans le fichier KSDS.
+L'utilisateur doit renseigner tous les champs de la pièce qu'il veut ajouter, même le numéro de la pièce. Dans le cas où il rentre un numéro de pièce déjà présent dans le KSDS, la création sera refusée et un message d'erreur lui sera présenté concernant les doublons.
 2 programmes COBOL : le 1er pour l'authentification, le 2ème pour l'ajout de pièces
 2 mapsets à écrire : un pour l'écran d'authentification et un pour l'écran d'ajout de pièces
 4 JCL de compilation : 2 pour les programmes COBOL et 2 pour les Mapsets
@@ -83,7 +84,7 @@ L'écran d'authentification va se baser sur un écran déjà fait durant la form
 - Le body qui est le centre de l'écran où l'utilisateur fait ses entrées
 - Le footer dans lequel sont affichés les messages d'erreur ainsi que les commandes et touches à disposition de l'utilisateur
 
-Le body d'écran d'authentification contient un message invitant l'utilisateur à rentrer ses identifiants et 2 champs : login et mot de passe.
+Le body de l'écran d'authentification contient un message invitant l'utilisateur à rentrer ses identifiants et 2 champs : login et mot de passe.
 L'utilisateur a 2 commandes à disposition : Enter pour valider ses informations de connexion et F3 pour quitter l'écran.
 Si l'utilisateur rentre les bonnes informations de connexion alors il est mené à un autre écran sinon un message d'erreur s'affiche en rouge dans le footer, "Mauvais login/mot de passe".
 
@@ -91,7 +92,11 @@ MS1G1P5
 
 ![[Pasted image 20260806144315.png]]
 ![[Pasted image 20260806123843.png]]
-![[Pasted image 20260806123859.png]]![[Pasted image 20260806123918.png]]![[Pasted image 20260806123937.png]]![[Pasted image 20260806123952.png]]![[Pasted image 20260806124007.png]]![[Pasted image 20260806124026.png]]![[Pasted image 20260806124041.png]]![[Pasted image 20260806124100.png]]
+![[Pasted image 20260806123859.png]]
+![[Pasted image 20260806123918.png]]
+![[Pasted image 20260807124613.png]]
+![[Pasted image 20260806123952.png]]
+![[Pasted image 20260806124007.png]]![[Pasted image 20260806124026.png]]![[Pasted image 20260806124041.png]]![[Pasted image 20260806124100.png]]
 
 Création de la map symbolique à partir du mapset
 
@@ -105,8 +110,20 @@ CEDA DEF MAPSET(MS1G1P5) GROUP(API4)
 CEDA INS MAPSET(MS1G1P5) GROUP(API4) 
 CECI SEND MAP(MAP1P5) MAPSET(MS1G1P5)
 
-![[Pasted image 20260806153209.png]]
+![[Pasted image 20260807124836.png]]
 
 ### Etape 4
+
+Création du mapset MS1p52 de l'écran d'ajout de nouvelles PARTS
+
+L'écran d'ajout d epièces va se baser sur un écran déjà fait durant la formation (BMS.A4MSE4) qui est divisé en 3 zones principales :
+- Le header qui contient la date, le nom du programme, le nom de la transaction, ainsi que l'heure
+- Le body qui est le centre de l'écran où l'utilisateur renseigne les différentes propriétés de la pièce à ajouter
+- Le footer dans lequel sont affichés les messages d'erreur ainsi que les commandes et touches à disposition de l'utilisateur
+
+Le body de l'écran d'ajout de nouvelles pièces contient un message invitant l'utilisateur à rentrer ses identifiants et 2 champs : login et mot de passe.
+L'utilisateur a 2 commandes à disposition : Enter pour valider ses informations de connexion et F3 pour quitter l'écran.
+Si l'utilisateur rentre les bonnes informations de connexion alors il est mené à un autre écran sinon un message d'erreur s'affiche en rouge dans le footer, "Mauvais login/mot de passe".
+### Etape 5
 
 Création du programme d'authentification et sa transaction
