@@ -21,6 +21,7 @@ Faire une IHM avec authentification de l'utilisateur permettant d'ajouter de nou
 
 L'ajout d'une nouvelle pièce dans le fichier KSDS.
 L'utilisateur doit renseigner tous les champs de la pièce qu'il veut ajouter, même le numéro de la pièce. Dans le cas où il rentre un numéro de pièce déjà présent dans le KSDS, la création sera refusée et un message d'erreur lui sera présenté concernant les doublons.
+Les champs ne sont réinitialisés uniquement sur commande de l'utilisateur, si jamais il a remplit tous les champs et que malheureusement c'est juste la PNUMBER qui bloque (cas doublon), on ne veut pas qu'il perde le contenu des autres champs.
 2 programmes COBOL : le 1er pour l'authentification, le 2ème pour l'ajout de pièces
 2 mapsets à écrire : un pour l'écran d'authentification et un pour l'écran d'ajout de pièces
 4 JCL de compilation : 2 pour les programmes COBOL et 2 pour les Mapsets
@@ -85,7 +86,7 @@ L'écran d'authentification va se baser sur un écran déjà fait durant la form
 - Le footer dans lequel sont affichés les messages d'erreur ainsi que les commandes et touches à disposition de l'utilisateur
 
 Le body de l'écran d'authentification contient un message invitant l'utilisateur à rentrer ses identifiants et 2 champs : login et mot de passe.
-L'utilisateur a 2 commandes à disposition : Enter pour valider ses informations de connexion et F3 pour quitter l'écran.
+L'utilisateur a 2 commandes à disposition : Enter pour valider ses informations de connexion, F5 pour RESET l'écran et F3 pour quitter l'écran.
 Si l'utilisateur rentre les bonnes informations de connexion alors il est mené à un autre écran sinon un message d'erreur s'affiche en rouge dans le footer, "Mauvais login/mot de passe".
 
 MS1G1P5
@@ -121,9 +122,16 @@ L'écran d'ajout d epièces va se baser sur un écran déjà fait durant la form
 - Le body qui est le centre de l'écran où l'utilisateur renseigne les différentes propriétés de la pièce à ajouter
 - Le footer dans lequel sont affichés les messages d'erreur ainsi que les commandes et touches à disposition de l'utilisateur
 
-Le body de l'écran d'ajout de nouvelles pièces contient un message invitant l'utilisateur à rentrer ses identifiants et 2 champs : login et mot de passe.
-L'utilisateur a 2 commandes à disposition : Enter pour valider ses informations de connexion et F3 pour quitter l'écran.
-Si l'utilisateur rentre les bonnes informations de connexion alors il est mené à un autre écran sinon un message d'erreur s'affiche en rouge dans le footer, "Mauvais login/mot de passe".
+Le body de l'écran d'ajout de nouvelles pièces contient un message invitant l'utilisateur à rentrer ses identifiants et 5 champs : 
+- PNUMBER
+- PNAME
+- COLOR
+- WEIGHT
+- CITY
+L'utilisateur a 2 commandes à disposition : Enter pour ajouter la pièce, F5 pour RESET l'écran et F3 pour quitter l'écran.
+Si l'utilisateur renseigne tous les champs et appuie sur Enter, le système ajoute la nouvelle pièce si ce n'est pas un doublon sinon un message d'erreur s'affiche en rouge dans le footer, "Doublon".
+Si l'utilisateur oublie de renseigner un champ, un message d'erreur s'affiche en rouge dans le footer, "Champ(s) non renseigné(s)".
+
 ### Etape 5
 
-Création du programme d'authentification et sa transaction
+Création du programme d'ajout de nouvelles pièces et sa transaction
